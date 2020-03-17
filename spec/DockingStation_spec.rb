@@ -1,9 +1,9 @@
-#require "DockingStation"
+require './lib/docking_station'
 
-describe DockignStation do
+describe DockingStation do
+end
 =begin
   it "Is DockingStation defined as a class" do
     expect(docking_station())# is a? instance of DockingStation
   end
 =end
-end
