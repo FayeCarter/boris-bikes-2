@@ -1,9 +1,10 @@
 require './lib/docking_station'
 
 describe DockingStation do
-end
-=begin
-  it "Is DockingStation defined as a class" do
-    expect(docking_station())# is a? instance of DockingStation
+
+  context 'responds to #release_bike' do
+    it 'calls release_bike' do
+      expect(DockingStation.new()).to respond_to(:release_bike)
+    end
   end
-=end
+end
