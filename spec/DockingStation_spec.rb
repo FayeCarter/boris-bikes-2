@@ -5,7 +5,7 @@ describe DockingStation do
   subject(:bike) {DockingStation.new.release_bike}
   context 'responds to #release_bike' do
     it 'calls release_bike' do
-      expect(DockingStation.new()).to respond_to(:release_bike)
+      expect(station).to respond_to(:release_bike)
     end
 
     it 'is of the Bike class' do
@@ -22,8 +22,12 @@ describe DockingStation do
 
   context 'be able to dock bike' do
     it 'docking station can dock bike' do
-      expect(station.dock(bike)).to eq(true)
+      expect(station.dock(bike)).to eq(bike)
+    end
+
+    it 'docking station returns bike' do
+      station.dock(bike)
+      expect(station.bike).to eq(bike)
     end
   end
-
 end
