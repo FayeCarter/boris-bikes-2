@@ -5,5 +5,7 @@ describe Bike do
     it 'tests Bike responds to #working?' do
       expect(Bike.new).to respond_to(:working?)
     end
+
+
   end
 end
