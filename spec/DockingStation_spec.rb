@@ -13,7 +13,6 @@ describe DockingStation do
       station.dock(bike)
       expect(station.release_bike).to be_instance_of(Bike)
     end
-
   end
 
   context 'checks if bike working' do
@@ -44,9 +43,9 @@ describe DockingStation do
     it 'check dock wont release broken bike' do
       bike.report_broken
       station.dock(bike)
-      expect{ station.release_bike }.to raise_error 'No bike available'
+      expect{ station.release_bike }.to raise_error 'bike broken'
     end
-
+    
   end
 
   context 'capacity tracked' do
@@ -65,9 +64,4 @@ describe DockingStation do
       expect { station_2.dock(bike) }.to raise_error 'Dock full'
     end
   end
-
-
-
-
-
 end
