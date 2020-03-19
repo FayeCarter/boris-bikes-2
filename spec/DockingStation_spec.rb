@@ -33,9 +33,15 @@ describe DockingStation do
     end
   end
 
-  context 'bikes in dock tracked' do 
+  context 'bikes in dock tracked' do
     it 'raises error if no bikes in dock' do
       expect { station.release_bike }.to raise_error 'No bike available'
     end
+
+    it 'raises error if dock hits capacity' do
+      station.dock(bike)
+      expect { station.dock(bike) }.to raise_error 'Dock full'
+    end
+
   end
 end
