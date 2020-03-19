@@ -2,17 +2,19 @@ require './lib/docking_station'
 
 describe DockingStation do
   subject(:station) {DockingStation.new}
-  subject(:bike) {DockingStation.new.release_bike}
+  subject(:bike) {Bike.new}
+
   context 'responds to #release_bike' do
     it 'calls release_bike' do
       expect(station).to respond_to(:release_bike)
     end
 
     it 'is of the Bike class' do
+      station.dock(bike)
       expect(station.release_bike).to be_instance_of(Bike)
     end
-  end
 
+  end
 
   context 'checks if bike working' do
     it 'returns true' do
@@ -28,6 +30,12 @@ describe DockingStation do
     it 'docking station returns bike' do
       station.dock(bike)
       expect(station.bike).to eq(bike)
+    end
+  end
+
+  context 'bikes in dock tracked' do 
+    it 'raises error if no bikes in dock' do
+      expect { station.release_bike }.to raise_error 'No bike available'
     end
   end
 end
