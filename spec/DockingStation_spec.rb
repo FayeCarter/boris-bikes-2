@@ -24,12 +24,12 @@ describe DockingStation do
 
   context 'be able to dock bike' do
     it 'docking station can dock bike' do
-      expect(station.dock(bike)).to eq(bike)
+      expect(station).to respond_to(:dock)
     end
 
-    it 'docking station returns bike' do
+    it 'docking station returns bikes' do
       station.dock(bike)
-      expect(station.bike).to eq(bike)
+      expect(station.bikes).to eq([bike])
     end
   end
 
@@ -39,9 +39,8 @@ describe DockingStation do
     end
 
     it 'raises error if dock hits capacity' do
-      station.dock(bike)
+      20.times { station.dock(bike) }
       expect { station.dock(bike) }.to raise_error 'Dock full'
     end
-
   end
 end
