@@ -45,6 +45,11 @@ describe DockingStation do
       station.dock(bike)
       expect{ station.release_bike }.to raise_error 'bike broken'
     end
+
+    it 'check dock accepts broken biked' do
+      bike.report_broken
+      expect(station).to respond_to(:dock)
+    end
     
   end
 
