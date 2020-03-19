@@ -39,7 +39,7 @@ describe DockingStation do
     end
 
     it 'raises error if dock hits capacity' do
-      20.times { station.dock(bike) }
+      DockingStation::DEFAULT_CAPACITY.times { station.dock(bike) }
       expect { station.dock(bike) }.to raise_error 'Dock full'
     end
   end
