@@ -31,6 +31,22 @@ describe DockingStation do
       station.dock(bike)
       expect(station.bikes).to eq([bike])
     end
+
+    it 'report bike as broken' do
+      expect(bike).to respond_to(:report_broken)
+    end
+
+    it 'check a broken bike' do
+      bike.report_broken
+      expect(bike.working?).to eq(false)
+    end
+
+    it 'check dock wont release broken bike' do
+      bike.report_broken
+      station.dock(bike)
+      expect{ station.release_bike }.to raise_error 'No bike available'
+    end
+
   end
 
   context 'capacity tracked' do
@@ -49,4 +65,9 @@ describe DockingStation do
       expect { station_2.dock(bike) }.to raise_error 'Dock full'
     end
   end
+
+
+
+
+
 end
