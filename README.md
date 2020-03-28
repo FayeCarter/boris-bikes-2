@@ -35,6 +35,14 @@ User stories are brief descriptions of a feature told from the perspective of a 
 > So that I can manage broken bikes and not disappoint users,
 > I'd like vans to take broken bikes from docking stations and deliver them to garages to be fixed.
 
+
+van = Van.new
+van.get_broken
+van.deliver_broken
+
+
+
+
 >As a maintainer of the system,
 >So that I can manage broken bikes and not disappoint users,
 >I'd like vans to collect working bikes from garages and distribute them to docking stations.
