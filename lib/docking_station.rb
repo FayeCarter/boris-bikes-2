@@ -14,11 +14,13 @@ class DockingStation
   def release_bike
     fail "No bike available" if empty?
     fail "bike broken" unless @bikes[-1].working?
+
     @bikes.pop()
   end
 
   def dock(bike)
     fail "Dock full" if full?
+    
     @bikes.push(bike)
   end
 
