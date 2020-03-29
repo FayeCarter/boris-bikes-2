@@ -4,7 +4,7 @@ describe DockingStation do
   subject(:station) { DockingStation.new }
   let(:bike) { double :bike, working?: true }
   let(:broken_bike) { double :bike, working?: false, report_broken: false}
-  
+  let(:van) { double :van, load: broken_bike }
 
   describe '#release_bike' do
     it 'subject responds to release_bike' do
@@ -71,5 +71,21 @@ describe DockingStation do
       expect { station_2.dock(bike) }.to raise_error 'Dock full'
     end
   end
+
+  describe '#load_van' do
+
+    it 'loads van' do
+      station.dock(broken_bike)
+      station.load_van
+      expect(van.load).to eq(broken_bike)
+    end
+
+    it 'removes broken bikes from docking station' do
+      station.dock(broken_bike)
+      station.load_van
+      expect(station.bikes[:broken]).to eq []
+    end
+
+  end 
 
 end

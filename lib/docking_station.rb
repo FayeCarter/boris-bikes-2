@@ -1,14 +1,16 @@
 require_relative 'bike'
+require_relative 'van'
 
 class DockingStation
 
-  attr_reader :bikes
+  attr_reader :bikes, :van
 
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @bikes = {working: [], broken: []}
+    @van = Van.new
   end
 
   def release_bike
@@ -22,6 +24,11 @@ class DockingStation
     fail "Dock full" if full?
     
     bike.working? ? @bikes[:working].push(bike) : @bikes[:broken].push(bike)
+  end
+
+  def load_van
+    @van.get_load(@bikes[:broken])
+    @bikes[:broken] = []
   end
 
   private
